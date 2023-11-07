@@ -14,15 +14,22 @@ spec:
          app: mongodb
      spec:
        containers:
-       - name: mongo
+       - name: mongodbcontainer
          image: mongo
          ports:
          - containerPort: 27017
          env:
          - name: MONGO_INITDB_ROOT_USERNAME
-           value: devdb
+           valueFrom:
+             configMapKeyRef:
+               name: mongodb-configmap
+               key: MONGO_INITDB_ROOT_USERNAME
+               
          - name: MONGO_INITDB_ROOT_PASSWORD
-           value: devdb@123
+           valueFrom:
+             configMapKeyRef:
+               name: mongodb-configmap
+               key: MONGO_INITDB_ROOT_PASSWORD
           
 ---
 apiVersion: v1
