@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: maven-web-application
+  namespace: test-ns
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/barnelakrishna/argocd-app-config.git
+    targetRevision: HEAD
+    path: prod
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: test-ns
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
