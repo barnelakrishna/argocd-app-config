@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/barnelakrishna/argocd-app-config.git
     targetRevision: HEAD
-    path: prod
+    path: ./prod
   destination: 
     server: https://kubernetes.default.svc
     namespace: test-ns
